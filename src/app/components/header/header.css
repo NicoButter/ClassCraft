@@ -1,0 +1,6 @@
+.app-header { background:linear-gradient(135deg, #0b1220, #1e293b); color:#fff; box-shadow:0 2px 8px rgba(0, 0, 0, 0.15); }
+.app-header .inner { display:flex; align-items:center; justify-content:space-between; padding:0.85rem 1rem; max-width:1100px; margin:0 auto; }
+.brand { font-weight:700; font-size:1.25rem; background:linear-gradient(135deg, #60a5fa, #93c5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.nav { display:flex; gap:1.5rem; }
+.nav-link { color: #cbd5e1; text-decoration:none; font-weight:500; font-size:0.95rem; transition:color 0.3s ease; }
+.nav-link:hover { color:#60a5fa; }
