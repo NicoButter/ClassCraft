@@ -1,4 +1,4 @@
-import { Component, computed, inject, ChangeDetectionStrategy, AfterViewInit, signal, PLATFORM_ID, ViewChild, ElementRef } from '@angular/core';
+import { Component, computed, inject, ChangeDetectionStrategy, signal, PLATFORM_ID, ViewChild, ElementRef, effect } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,7 +13,7 @@ import { PRACTICAL_ASSIGNMENTS, Exercise, PracticalAssignment, Question } from '
   styleUrls: ['./exercise-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExercisePageComponent implements AfterViewInit {
+export class ExercisePageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly platformId = inject(PLATFORM_ID);
   @ViewChild('codeBlock') private readonly codeBlock?: ElementRef<HTMLElement>;
@@ -36,6 +36,31 @@ export class ExercisePageComponent implements AfterViewInit {
   /** Key-value map: questionId → selectedChoiceId */
   private readonly answers = signal<Record<string, string | null>>({});
 
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      effect(() => {
+        const ex = this.exercise();
+        if (!ex?.context) return;
+        // Run after Angular renders the DOM with the new context
+        setTimeout(() => this.applyHighlight(), 0);
+      });
+    }
+  }
+
+  private async applyHighlight(): Promise<void> {
+    const element = this.codeBlock?.nativeElement;
+    if (!element) return;
+
+    // Remove previous highlight so it can be re-applied
+    element.removeAttribute('data-highlighted');
+    element.classList.remove('hljs');
+
+    const { default: hljs } = await import('highlight.js/lib/core');
+    const { default: java } = await import('highlight.js/lib/languages/java');
+    hljs.registerLanguage('java', java);
+    hljs.highlightElement(element);
+  }
+
   currentQuestion(questions: Question[]): Question {
     return questions[this.currentIndex()];
   }
@@ -48,7 +73,6 @@ export class ExercisePageComponent implements AfterViewInit {
     return Object.values(this.answers()).some(v => v !== null);
   }
 
-  /** A, B, C, D labels for choices */
   choiceKey(index: number): string {
     return String.fromCharCode(65 + index);
   }
@@ -85,20 +109,5 @@ export class ExercisePageComponent implements AfterViewInit {
     }, {});
     console.log('Respuestas enviadas (MCQ):', result);
     // TODO: integrate with backend
-  }
-
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    setTimeout(() => {
-      const hljs = (window as any).hljs;
-      const element = this.codeBlock?.nativeElement;
-      try {
-        if (hljs && element) {
-          hljs.highlightElement(element);
-        } else {
-          hljs?.highlightAll?.();
-        }
-      } catch { /* no-op */ }
-    }, 50);
   }
 }

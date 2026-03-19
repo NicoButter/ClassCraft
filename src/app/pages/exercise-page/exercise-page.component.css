@@ -134,7 +134,17 @@
 .code-wrap .hljs {
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
+  background: #282a36 !important;
 }
+
+/* Dracula theme colors for Java syntax */
+.code-wrap .hljs-keyword { color: #ff79c6; } /* pink */
+.code-wrap .hljs-string { color: #f1fa8c; } /* yellow */
+.code-wrap .hljs-comment { color: #6272a4; } /* gray */
+.code-wrap .hljs-number { color: #bd93f9; } /* purple */
+.code-wrap .hljs-function { color: #50fa7b; } /* green */
+.code-wrap .hljs-class { color: #8be9fd; } /* cyan */
+.code-wrap .hljs-title { color: #ffb86c; } /* orange */
 
 /* ─────────────────────────────────────────────────
    RIGHT PANEL – carousel
