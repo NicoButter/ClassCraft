@@ -1,22 +1,67 @@
 @if (exercise(); as ex) {
-  <section class="container exercise-container">
-    <a [routerLink]="['/entrenar', assignment()?.id]" class="back-link">← Volver a {{ assignment()?.title }}</a>
+  <section class="exercise-container">
+    <a [routerLink]="['/entrenar', assignment()?.id]" class="back-link">
+      ← Volver a {{ assignment()?.title }}
+    </a>
 
-    <div class="card exercise-card">
-      <h1>{{ ex.title }}</h1>
-      <hr class="divider" />
-      <div class="description">
-        <h2>Enunciado</h2>
-        <p>{{ ex.description }}</p>
+    <div class="exercise-header card">
+      <div class="header-meta">
+        <p class="institution">UNPA – UARG</p>
+        <p class="subject">{{ assignment()?.category }}</p>
+        <p class="year">Año: {{ assignment()?.year }}</p>
       </div>
-      <div class="workspace">
-        <h2>Tu respuesta</h2>
-        <p class="placeholder-text">El área interactiva de respuesta se implementará aquí.</p>
+      <h1 class="exercise-title">{{ assignment()?.title }}</h1>
+    </div>
+
+    <!-- Enunciado/Descripción (va antes del código) -->
+    <div class="section-card card">
+      <h2 class="section-title">📝 Enunciado</h2>
+      <div class="description-text">
+        {{ ex.description }}
       </div>
+    </div>
+
+    <!-- Código contexto (después del enunciado) -->
+    @if (ex.context) {
+      <div class="section-card card">
+        <h2 class="section-title">🧪 Contexto</h2>
+        <pre class="code-block"><code class="language-java" [innerText]="ex.context"></code></pre>
+      </div>
+    }
+
+    <!-- Preguntas -->
+    @if (ex.questions && ex.questions.length > 0) {
+      <div class="section-card card">
+        <h2 class="section-title">🧠 Preguntas</h2>
+        <div class="questions-list">
+          @for (question of ex.questions; track question.id) {
+            <div class="question-item">
+              <div class="question-header">
+                <span class="question-label">{{ question.label }}</span>
+              </div>
+              <p class="question-text">{{ question.text }}</p>
+              <div class="choice-list" role="radiogroup" [attr.aria-labelledby]="'q-'+question.id">
+                @for (choice of question.choices; track choice.id) {
+                  <label class="choice-item">
+                    <input type="radio" name="{{ question.id }}" value="{{ choice.id }}" />
+                    <span class="choice-text">{{ choice.text }}</span>
+                  </label>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Acciones -->
+    <div class="actions">
+      <button class="btn btn-secondary" (click)="resetAnswers()">Limpiar respuestas</button>
+      <button class="btn btn-primary" (click)="submitAnswers()">Enviar respuestas</button>
     </div>
   </section>
 } @else {
-  <section class="container">
+  <section class="exercise-container">
     <p>Ejercicio no encontrado.</p>
     <a routerLink="/entrenar" class="back-link">← Volver a Entrenar</a>
   </section>

@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* ═══════════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY (Google Fonts: Inter)
+   Tech-focused, modern, excellent on-screen legibility
+═══════════════════════════════════════════════════ */
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #07091a;
+  color: #e2e8f0;
+}
+
+/* You can add more global styles below */

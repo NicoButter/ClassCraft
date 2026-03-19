@@ -1,24 +1,291 @@
-.exercise-container { max-width: 760px; margin: 2rem auto; }
+/* ═══════════════════════════════════════════════════
+   EXERCISE PAGE - Modern Gamer-Academic Style
+═══════════════════════════════════════════════════ */
 
-.back-link { display: inline-block; color: #64748b; text-decoration: none; font-size: 0.95rem; margin-bottom: 1.25rem; }
-.back-link:hover { color: #0b1220; }
-
-.exercise-card { padding: 2rem; }
-.exercise-card h1 { margin: 0 0 1rem 0; font-size: 1.4rem; color: #0b1220; }
-
-.divider { border: none; border-top: 1px solid #e2e8f0; margin: 1rem 0 1.5rem 0; }
-
-.description h2,
-.workspace h2 { font-size: 1rem; color: #334155; margin: 0 0 0.5rem 0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
-
-.description p { color: #1e293b; line-height: 1.6; margin: 0 0 2rem 0; }
-
-.placeholder-text {
-  background: #f8fafc;
-  border: 2px dashed #cbd5e1;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  color: #94a3b8;
-  font-style: italic;
+:host {
+  display: block;
+  width: 100%;
+  /* ensure Inter is used for the component */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+.exercise-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ─ Back link ─ */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7dd3fc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #38bdf8;
+}
+
+/* ─ Card base ─ */
+.card {
+  background: #0d1122;
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   EXERCISE HEADER
+═══════════════════════════════════════════════════ */
+
+.exercise-header {
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, #160f35 0%, #1a0d3a 100%);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.header-meta p {
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 8px;
+  color: #c4b5fd;
+  letter-spacing: 0.05em;
+}
+
+.exercise-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION CARDS
+═══════════════════════════════════════════════════ */
+
+.section-card {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin: 0 0 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ─ Code block (Dracula-like) ─ */
+.code-block {
+  /* wrapper only - highlight.js (dracula) will style .hljs */
+  border-radius: 12px;
+  padding: 0.5rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.code-block code {
+  display: block;
+  white-space: pre;
+  /* allow highlight.js theme (.hljs) to define colors and background */
+}
+
+/* choice list (multiple-choice) */
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.choice-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.01);
+  border: 1px solid rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+
+.choice-item:hover {
+  background: rgba(124,58,237,0.06);
+  transform: translateY(-2px);
+}
+
+.choice-item input[type="radio"] {
+  accent-color: #8be9fd; /* modern accent for supported browsers */
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.choice-text {
+  color: #f8f8f2;
+  font-weight: 500;
+}
+
+/* ─ Description text ─ */
+.description-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   QUESTIONS & ANSWERS
+═══════════════════════════════════════════════════ */
+
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.question-item {
+  padding: 1.25rem;
+  background: rgba(14, 165, 233, 0.04);
+  border: 1px solid rgba(14, 165, 233, 0.15);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.question-item:hover {
+  background: rgba(14, 165, 233, 0.07);
+  border-color: rgba(14, 165, 233, 0.25);
+}
+
+.question-header {
+  margin-bottom: 0.75rem;
+}
+
+.question-label {
+  display: inline-block;
+  background: linear-gradient(135deg, #0891b2, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.question-text {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.answer-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  background: #05070d;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.answer-input::placeholder {
+  color: #64748b;
+}
+
+.answer-input:focus {
+  outline: none;
+  background: #0a0e1a;
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════
+   ACTIONS (BUTTONS)
+═══════════════════════════════════════════════════ */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+}
+
+.btn {
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.55);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  color: #a78bfa;
+}
+
+.btn-secondary:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #e9d5ff;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .exercise-container { padding: 1.5rem 1rem; }
+  .card { padding: 1.5rem; }
+  .exercise-title { font-size: 1.5rem; }
+  .header-meta { gap: 1rem; }
+  .actions { flex-direction: column-reverse; }
+  .actions .btn { width: 100%; }
+}
+

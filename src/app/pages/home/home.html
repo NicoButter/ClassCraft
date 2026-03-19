@@ -1,45 +1,101 @@
-<section class="home-card card container">
-  <div class="header-section">
-    <h1>ClassCraft</h1>
-    <p class="subtitle">Plataforma de Práctica en Programación Orientada a Objetos</p>
-  </div>
-  
-  <div class="university-info">
-    <h2>Universidad Nacional de la Patagonia Austral</h2>
-    <p class="campus">Campus Río Gallegos</p>
-    <div class="programs">
-      <span class="program">Analista de Sistemas</span>
-      <span class="separator">•</span>
-      <span class="program">Licenciatura en Sistemas</span>
+<div class="landing">
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
-  </div>
-  
-  <p class="description">
-    ClassCraft es un espacio dedicado a reforzar y practicar los conceptos fundamentales
-    de Programación Orientada a Objetos. A través de ejercicios interactivos y desafiantes,
-    estudiantes de análisis de sistemas y licenciatura pueden consolidar conocimientos
-    y prepararse para evaluaciones académicas.
-  </p>
-  
-  <div class="features">
-    <div class="feature">
-      <span class="icon">📚</span>
-      <h3>Ejercicios Prácticos</h3>
-      <p>Casos de uso diseñados para reforzar conceptos POO</p>
+
+    <div class="hero-content">
+      <p class="university-badge">UNPA · UARG · Campus Río Gallegos</p>
+
+      <h1 class="hero-title">
+        Class<span class="accent">Craft</span>
+      </h1>
+
+      <p class="hero-tagline">Programación Orientada a Objetos</p>
+
+      <p class="hero-desc">
+        Dominá los fundamentos de POO con ejercicios interactivos. Seleccioná libremente trabajos prácticos y ejercicios para practicar a tu ritmo.
+      </p>
+
+      <div class="programs-row" aria-label="Carreras disponibles">
+        <span class="prog-tag">Analista de Sistemas</span>
+        <span class="prog-tag">Lic. en Sistemas</span>
+      </div>
+
+      <a routerLink="/entrenar" class="cta-btn">
+        Empezar a Entrenar
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
     </div>
-    <div class="feature">
-      <span class="icon">✨</span>
-      <h3>Interactivo</h3>
-      <p>Aprende en tiempo real con retroalimentación inmediata</p>
+  </section>
+
+  <!-- ── Feature cards ─────────────────────────────────── -->
+  <section class="features-section" aria-labelledby="features-title">
+    <div class="container">
+      <h2 id="features-title" class="section-title">¿Qué vas a encontrar?</h2>
+
+      <div class="features-grid">
+
+        <!-- Card 1 -->
+        <article class="feature-card card-purple">
+          <div class="feature-img-wrap">
+            <img
+              src="assets/images/exercises.jpg"
+              alt="Ejercicios Prácticos"
+              class="feature-img"
+              (error)="onImgError($event)"
+            />
+            <div class="img-placeholder" aria-hidden="true">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <div class="card-glow card-glow-purple" aria-hidden="true"></div>
+          </div>
+          <div class="feature-body">
+            <h3>Ejercicios Prácticos</h3>
+            <p>Casos de uso reales para reforzar conceptos de POO paso a paso.</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="feature-card card-cyan">
+          <div class="feature-img-wrap">
+            <img
+              src="assets/images/interactive.jpg"
+              alt="Selección Libre de Ejercicios"
+              class="feature-img"
+              (error)="onImgError($event)"
+            />
+            <div class="img-placeholder" aria-hidden="true">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.25 9.75 16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/>
+              </svg>
+            </div>
+            <div class="card-glow card-glow-cyan" aria-hidden="true"></div>
+          </div>
+          <div class="feature-body">
+            <h3>Selección Libre</h3>
+            <p>Elige cualquier trabajo práctico y ejercicio para practicar a tu ritmo.</p>
+          </div>
+        </article>
+
+      </div>
     </div>
-    <div class="feature">
-      <span class="icon">🎯</span>
-      <h3>Preparación</h3>
-      <p>Mejora tu rendimiento académico</p>
-    </div>
+  </section>
+
+  <!-- ── University bar ────────────────────────────────── -->
+  <div class="univ-bar">
+    <span>Universidad Nacional de la Patagonia Austral</span>
   </div>
-  
-  <div class="actions">
-    <a routerLink="/exercise" class="start-button">Comenzar a practicar</a>
-  </div>
-</section>
+
+</div>
