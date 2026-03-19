@@ -1,5 +1,6 @@
-import { Component, computed, inject, ChangeDetectionStrategy, AfterViewInit, signal } from '@angular/core';
+import { Component, computed, inject, ChangeDetectionStrategy, AfterViewInit, signal, PLATFORM_ID, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { PRACTICAL_ASSIGNMENTS, Exercise, PracticalAssignment, Question } from '../../data/mock-data';
@@ -14,6 +15,8 @@ import { PRACTICAL_ASSIGNMENTS, Exercise, PracticalAssignment, Question } from '
 })
 export class ExercisePageComponent implements AfterViewInit {
   private readonly route = inject(ActivatedRoute);
+  private readonly platformId = inject(PLATFORM_ID);
+  @ViewChild('codeBlock') private readonly codeBlock?: ElementRef<HTMLElement>;
 
   private readonly params = toSignal(
     this.route.paramMap.pipe(map(p => ({ tpId: p.get('tpId') ?? '', exerciseId: p.get('exerciseId') ?? '' })))
@@ -85,10 +88,16 @@ export class ExercisePageComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     setTimeout(() => {
       const hljs = (window as any).hljs;
+      const element = this.codeBlock?.nativeElement;
       try {
-        hljs?.highlightAll?.();
+        if (hljs && element) {
+          hljs.highlightElement(element);
+        } else {
+          hljs?.highlightAll?.();
+        }
       } catch { /* no-op */ }
     }, 50);
   }

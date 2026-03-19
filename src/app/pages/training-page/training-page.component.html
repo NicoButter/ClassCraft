@@ -6,7 +6,7 @@
 
   <div class="tp-grid">
     @for (tp of assignments; track tp.id) {
-      <a [routerLink]="['/entrenar', tp.id]" class="tp-card">
+      <a [routerLink]="['/entrenar', tp.id, getFirstExerciseId(tp)]" class="tp-card">
         <div class="tp-card-highlight"></div>
         <div class="tp-card-content">
           <div class="tp-card-header">

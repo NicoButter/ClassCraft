@@ -11,4 +11,8 @@ import { PRACTICAL_ASSIGNMENTS, PracticalAssignment } from '../../data/mock-data
 })
 export class TrainingPageComponent {
   readonly assignments: PracticalAssignment[] = PRACTICAL_ASSIGNMENTS;
+
+  getFirstExerciseId(tp: PracticalAssignment): string {
+    return tp.exercises[0]?.id ?? '';
+  }
 }

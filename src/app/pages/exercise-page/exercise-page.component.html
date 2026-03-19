@@ -27,7 +27,13 @@
         @if (ex.context) {
           <section class="panel-section" aria-label="Código fuente">
             <h2 class="panel-title">Código fuente</h2>
-            <pre class="code-wrap"><code class="language-java" [innerText]="ex.context"></code></pre>
+            <pre class="code-wrap">
+              <code
+                #codeBlock
+                class="language-java"
+                [textContent]="ex.context">
+              </code>
+            </pre>
           </section>
         }
       </aside>
