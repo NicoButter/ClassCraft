@@ -1,12 +1,414 @@
 /* ═══════════════════════════════════════════════════
-   EXERCISE PAGE - Modern Gamer-Academic Style
+   EXERCISE PAGE – 2-column split layout
 ═══════════════════════════════════════════════════ */
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   width: 100%;
-  /* ensure Inter is used for the component */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ─ Page wrapper ─ */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #07091a;
+  min-height: 100%;
+}
+
+.not-found {
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem;
+  color: #94a3b8;
+}
+
+/* ─────────────────────────────────────────────────
+   TOP BAR
+───────────────────────────────────────────────── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem;
+  background: #0d1122;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7dd3fc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.back-link:hover { color: #38bdf8; }
+
+.top-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meta-pill {
+  padding: 0.3rem 0.85rem;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 100px;
+  color: #c4b5fd;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────────────────────────
+   SPLIT PANEL
+───────────────────────────────────────────────── */
+.split-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────
+   LEFT PANEL – enunciado + código
+───────────────────────────────────────────────── */
+.panel-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: #09111f;
+  overflow-y: auto;
+  border-right: 1px solid rgba(139, 92, 246, 0.12);
+}
+
+.panel-section { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.panel-title {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7c3aed;
+}
+
+.description-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+}
+
+/* ─ Code block (Dracula) ─ */
+.code-wrap {
+  margin: 0;
+  border-radius: 12px;
+  overflow: auto;
+  border: 1px solid rgba(98, 114, 164, 0.18);
+}
+
+.code-wrap code {
+  display: block;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  white-space: pre;
+  /* Highlight.js Dracula theme handles background + colors */
+}
+
+/* Override hljs padding for tighter look */
+.code-wrap .hljs {
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* ─────────────────────────────────────────────────
+   RIGHT PANEL – carousel
+───────────────────────────────────────────────── */
+.panel-right {
+  display: flex;
+  align-items: stretch;
+  padding: 2rem;
+  background: #0d1122;
+  overflow-y: auto;
+}
+
+/* ─ Carousel container ─ */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* ─ Progress ─ */
+.carousel-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed, #38bdf8);
+  border-radius: 100px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* ─ Slide ─ */
+.slide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: #160f35;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 16px;
+  animation: slide-in 0.3s ease;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.question-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.question-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* ─ Choices ─ */
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.choice-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  user-select: none;
+}
+
+.choice-item:hover {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.35);
+  transform: translateX(3px);
+}
+
+.choice-item.selected {
+  background: rgba(124, 58, 237, 0.14);
+  border-color: rgba(167, 139, 250, 0.6);
+}
+
+.choice-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #a78bfa;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.choice-item.selected .choice-key {
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+  border-color: transparent;
+  color: #fff;
+}
+
+.choice-text {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ─ Navigation ─ */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-btn {
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(139, 92, 246, 0.3);
+  background: transparent;
+  color: #a78bfa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn:not(:disabled):hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #e9d5ff;
+}
+
+.nav-btn-next {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+.nav-btn-submit {
+  background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+}
+
+.nav-btn-submit:hover {
+  box-shadow: 0 0 36px rgba(124, 58, 237, 0.6);
+  transform: translateY(-1px);
+}
+
+/* ─ Dots ─ */
+.nav-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dot-answered {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+.dot-active {
+  background: #a78bfa;
+  transform: scale(1.4);
+}
+
+/* ─ Reset row ─ */
+.reset-row {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-reset {
+  background: none;
+  border: none;
+  color: #475569;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.btn-reset:hover { color: #94a3b8; }
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE – stack vertically on mobile
+───────────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .split-panel {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .panel-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.12);
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.25rem;
+  }
 }
 
 .exercise-container {
