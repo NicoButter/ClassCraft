@@ -1,0 +1,19 @@
+<section class="container training-container">
+  <h1>Trabajos Prácticos</h1>
+  <p class="subtitle">Seleccioná un trabajo práctico para ver sus ejercicios.</p>
+
+  <div class="tp-list">
+    @for (tp of assignments; track tp.id) {
+      <a [routerLink]="['/entrenar', tp.id]" class="tp-card card">
+        <div class="tp-card-content">
+          <div class="tp-info">
+            <h2>{{ tp.title }}</h2>
+            <p>{{ tp.description }}</p>
+            <span class="exercise-count">{{ tp.exercises.length }} ejercicios</span>
+          </div>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    }
+  </div>
+</section>

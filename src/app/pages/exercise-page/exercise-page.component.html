@@ -1,0 +1,23 @@
+@if (exercise(); as ex) {
+  <section class="container exercise-container">
+    <a [routerLink]="['/entrenar', assignment()?.id]" class="back-link">← Volver a {{ assignment()?.title }}</a>
+
+    <div class="card exercise-card">
+      <h1>{{ ex.title }}</h1>
+      <hr class="divider" />
+      <div class="description">
+        <h2>Enunciado</h2>
+        <p>{{ ex.description }}</p>
+      </div>
+      <div class="workspace">
+        <h2>Tu respuesta</h2>
+        <p class="placeholder-text">El área interactiva de respuesta se implementará aquí.</p>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="container">
+    <p>Ejercicio no encontrado.</p>
+    <a routerLink="/entrenar" class="back-link">← Volver a Entrenar</a>
+  </section>
+}

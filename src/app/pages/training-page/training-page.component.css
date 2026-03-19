@@ -1,0 +1,42 @@
+.training-container { max-width: 760px; margin: 2rem auto; }
+.training-container h1 { margin-bottom: 0.25rem; }
+.subtitle { color: #64748b; margin-bottom: 2rem; }
+
+.tp-list { display: flex; flex-direction: column; gap: 1rem; }
+
+.tp-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.tp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(11, 18, 32, 0.1);
+  border-color: #94a3b8;
+}
+
+.tp-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tp-info h2 { margin: 0 0 0.35rem 0; font-size: 1.1rem; color: #0b1220; }
+.tp-info p { margin: 0 0 0.5rem 0; color: #64748b; font-size: 0.95rem; }
+
+.exercise-count {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0c4a6e;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.arrow { font-size: 1.4rem; color: #94a3b8; flex-shrink: 0; }
+.tp-card:hover .arrow { color: #0b1220; }

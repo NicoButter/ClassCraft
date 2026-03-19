@@ -1,0 +1,28 @@
+@if (assignment(); as tp) {
+  <section class="container detail-container">
+    <a routerLink="/entrenar" class="back-link">← Volver a Trabajos Prácticos</a>
+
+    <h1>{{ tp.title }}</h1>
+    <p class="subtitle">{{ tp.description }}</p>
+
+    <h2>Ejercicios</h2>
+    <div class="exercise-list">
+      @for (exercise of tp.exercises; track exercise.id) {
+        <a [routerLink]="['/entrenar', tp.id, exercise.id]" class="exercise-card card">
+          <div class="exercise-card-content">
+            <div class="exercise-info">
+              <h3>{{ exercise.title }}</h3>
+              <p>{{ exercise.description }}</p>
+            </div>
+            <span class="arrow">→</span>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+} @else {
+  <section class="container">
+    <p>Trabajo práctico no encontrado.</p>
+    <a routerLink="/entrenar" class="back-link">← Volver a Entrenar</a>
+  </section>
+}
