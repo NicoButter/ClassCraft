@@ -1,17 +1,29 @@
 <section class="container training-container">
-  <h1>Trabajos Prácticos</h1>
-  <p class="subtitle">Seleccioná un trabajo práctico para ver sus ejercicios.</p>
+  <div class="header-section">
+    <h1>Trabajos Prácticos</h1>
+    <p class="subtitle">Seleccioná un trabajo práctico para ver sus ejercicios.</p>
+  </div>
 
-  <div class="tp-list">
+  <div class="tp-grid">
     @for (tp of assignments; track tp.id) {
-      <a [routerLink]="['/entrenar', tp.id]" class="tp-card card">
+      <a [routerLink]="['/entrenar', tp.id]" class="tp-card">
+        <div class="tp-card-highlight"></div>
         <div class="tp-card-content">
-          <div class="tp-info">
-            <h2>{{ tp.title }}</h2>
-            <p>{{ tp.description }}</p>
-            <span class="exercise-count">{{ tp.exercises.length }} ejercicios</span>
+          <div class="tp-card-header">
+            <h2 class="tp-title">{{ tp.title }}</h2>
+            <span class="tp-badge">{{ tp.year }}</span>
           </div>
-          <span class="arrow">→</span>
+          
+          <p class="tp-category">{{ tp.category }}</p>
+          <p class="tp-description">{{ tp.description }}</p>
+          
+          <div class="tp-footer">
+            <span class="exercise-count">
+              <span class="count-number">{{ tp.exercises.length }}</span>
+              {{ tp.exercises.length === 1 ? 'ejercicio' : 'ejercicios' }}
+            </span>
+            <span class="arrow">→</span>
+          </div>
         </div>
       </a>
     }
