@@ -23,11 +23,11 @@ export class ExercisePageComponent {
   );
 
   readonly assignment = computed<PracticalAssignment | undefined>(() =>
-    PRACTICAL_ASSIGNMENTS.find(tp => tp.id === this.params()?.tpId)
+    PRACTICAL_ASSIGNMENTS.find((tp: PracticalAssignment) => tp.id === this.params()?.tpId)
   );
 
   readonly exercise = computed<Exercise | undefined>(() =>
-    this.assignment()?.exercises.find(e => e.id === this.params()?.exerciseId)
+    this.assignment()?.exercises.find((e: Exercise) => e.id === this.params()?.exerciseId)
   );
 
   /** Carousel state */
@@ -103,10 +103,13 @@ export class ExercisePageComponent {
   submitAnswers(): void {
     const ex = this.exercise();
     if (!ex?.questions) return;
-    const result = ex.questions.reduce<Record<string, string | null>>((acc, q) => {
-      acc[q.id] = this.answers()[q.id] ?? null;
-      return acc;
-    }, {});
+    const result = ex.questions.reduce<Record<string, string | null>>(
+      (acc: Record<string, string | null>, q: Question) => {
+        acc[q.id] = this.answers()[q.id] ?? null;
+        return acc;
+      },
+      {} as Record<string, string | null>
+    );
     console.log('Respuestas enviadas (MCQ):', result);
     // TODO: integrate with backend
   }

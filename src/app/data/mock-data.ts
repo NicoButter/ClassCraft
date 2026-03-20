@@ -119,9 +119,8 @@ public class Deportivo extends Auto {
             ]
           }
         ]
-      }
-        ,
-        {
+      },
+      {
         id: 'e2',
         title: 'Ejercicio 2 - Jerarquía',
         description: 'Analizá la siguiente jerarquía de clases y respondé las preguntas sobre herencia, acceso y valores de atributos.',
@@ -279,7 +278,189 @@ class Deportivo extends Auto {
             ]
           }
         ]
-        }
+      },
+      {
+        id: 'e3',
+        title: 'Ejercicio 3 - Multiple Choice',
+        description: 'Preguntas sobre inicialización y constructores en jerarquías de clases.',
+        context: `// 3.1 - Clase base y derivada tienen constructores
+class Base {
+    private int i;
+
+    public Base() {
+        i = 100;
+    }
+
+    public int getI() {
+        return i;
+    }
+}
+
+class Hija extends Base {
+    private int j;
+
+    public Hija() {
+        super();
+        j = 120;
+    }
+
+    public int getJ() {
+        return j;
+    }
+}
+
+public class Prueba {
+    public static void main(String[] args) {
+        Hija x = new Hija();
+        System.out.println("Atributo j de X: " + x.getJ());
+        System.out.println("Atributo i de X: " + x.getI());
+    }
+}
+
+// 3.2 - La clase derivada no tiene constructor (Java agrega uno por defecto)
+class Base2 {
+    private int i;
+
+    public Base2() {
+        i = 100;
+    }
+
+    public int getI() {
+        return i;
+    }
+}
+
+class Hija2 extends Base2 {
+    private int j;
+
+    // No hay constructor → Java agrega uno por defecto
+
+    public int getJ() {
+        return j;
+    }
+}
+
+public class Prueba2 {
+    public static void main(String[] args) {
+        Hija2 x = new Hija2();
+        System.out.println("Atributo j de X: " + x.getJ());
+        System.out.println("Atributo i de X: " + x.getI());
+    }
+}
+
+// 3.3 - La clase base no tiene constructor sin argumentos (ejemplo que provoca compilación)
+class Base3 {
+    private int i;
+
+    public Base3(int n) {
+        i = n;
+    }
+
+    public int getI() {
+        return i;
+    }
+}
+
+class Hija3 extends Base3 {
+    private int j;
+
+    public Hija3() {
+        j = 120;
+    }
+
+    public int getJ() {
+        return j;
+    }
+}
+
+public class Prueba3 {
+    public static void main(String[] args) {
+        Hija3 x = new Hija3(); // 💥 rompe: no existe constructor por defecto en Base3
+        System.out.println("Atributo j de X: " + x.getJ());
+        System.out.println("Atributo i de X: " + x.getI());
+    }
+}
+
+// 3.4 - Base tiene constructor con argumentos, Hija llama a super(110)
+class Base4 {
+    private int i;
+
+    public Base4(int n) {
+        i = n;
+    }
+
+    public int getI() {
+        return i;
+    }
+}
+
+class Hija4 extends Base4 {
+    private int j;
+
+    public Hija4() {
+        super(110);
+        j = 120;
+    }
+
+    public int getJ() {
+        return j;
+    }
+}
+
+public class Prueba4 {
+    public static void main(String[] args) {
+        Hija4 x = new Hija4();
+        System.out.println("Atributo j de X: " + x.getJ());
+        System.out.println("Atributo i de X: " + x.getI());
+    }
+}`,
+        questions: [
+          {
+            id: '3.1',
+            label: '3.1',
+            text: '(Clase base y derivada tienen constructores)\n¿Qué salida produce el programa?',
+            choices: [
+              { id: '1', text: 'A. Atributo j de X: 0\nAtributo i de X: 0' },
+              { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
+              { id: '3', text: 'C. Atributo j de X: 120\nAtributo i de X: 0' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          },
+          {
+            id: '3.2',
+            label: '3.2',
+            text: '(La clase derivada no tiene constructor)\n¿Qué salida produce el programa?',
+            choices: [
+              { id: '1', text: 'A. Atributo j de X: 0\nAtributo i de X: 100' },
+              { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
+              { id: '3', text: 'C. Atributo j de X: 0\nAtributo i de X: 0' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          },
+          {
+            id: '3.3',
+            label: '3.3',
+            text: '(La clase base no tiene constructor sin argumentos)\n¿Qué ocurre al ejecutar el programa?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta correctamente con valores por defecto' },
+              { id: '2', text: 'B. Se ejecuta y muestra i = 0' },
+              { id: '3', text: 'C. Error de compilación' },
+              { id: '4', text: 'D. Error en tiempo de ejecución' }
+            ]
+          },
+          {
+            id: '3.4',
+            label: '3.4',
+            text: '(Base tiene constructor con argumentos, Hija llama a super(110))\n¿Qué salida produce el programa?',
+            choices: [
+              { id: '1', text: 'A. Atributo j de X: 0\nAtributo i de X: 110' },
+              { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
+              { id: '3', text: 'C. Atributo j de X: 120\nAtributo i de X: 110' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
