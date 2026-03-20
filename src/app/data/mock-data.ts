@@ -126,47 +126,47 @@ public class Deportivo extends Auto {
         title: 'Ejercicio 2 - Jerarquía',
         description: 'Analizá la siguiente jerarquía de clases y respondé las preguntas sobre herencia, acceso y valores de atributos.',
         context: `class Vehiculo {
-      protected int velocidad;
+    protected int velocidad;
 
-      public Vehiculo() {
+    public Vehiculo() {
         this.velocidad = 50;
-      }
-
-      public void mostrarVelocidad() {
-        System.out.println("Velocidad base");
-      }
     }
 
-    class Auto extends Vehiculo {
-      protected int ruedas;
+    public void mostrarVelocidad() {
+        System.out.println("Velocidad base");
+    }
+}
 
-      public Auto() {
+class Auto extends Vehiculo {
+    protected int ruedas;
+
+    public Auto() {
         super();
         this.ruedas = 4;
-      }
-
-      @Override
-      public void mostrarVelocidad() {
-        System.out.println("Velocidad del auto");
-      }
-
-      private void metodoSecreto() {
-        System.out.println("Método privado del auto");
-      }
     }
 
-    class Deportivo extends Auto {
-      private int ruedas;
+    @Override
+    public void mostrarVelocidad() {
+        System.out.println("Velocidad del auto");
+    }
 
-      public Deportivo() {
+    private void metodoSecreto() {
+        System.out.println("Método privado del auto");
+    }
+}
+
+class Deportivo extends Auto {
+    private int ruedas;
+
+    public Deportivo() {
         super();
         this.ruedas = 6;
-      }
+    }
 
-      public void mostrarDeportivo() {
+    public void mostrarDeportivo() {
         System.out.println("Soy un deportivo");
-      }
-    }`,
+    }
+}`,
         questions: [
           {
             id: 'a',
