@@ -120,6 +120,166 @@ public class Deportivo extends Auto {
           }
         ]
       }
+        ,
+        {
+        id: 'e2',
+        title: 'Ejercicio 2 - Jerarquía',
+        description: 'Analizá la siguiente jerarquía de clases y respondé las preguntas sobre herencia, acceso y valores de atributos.',
+        context: `class Vehiculo {
+      protected int velocidad;
+
+      public Vehiculo() {
+        this.velocidad = 50;
+      }
+
+      public void mostrarVelocidad() {
+        System.out.println("Velocidad base");
+      }
+    }
+
+    class Auto extends Vehiculo {
+      protected int ruedas;
+
+      public Auto() {
+        super();
+        this.ruedas = 4;
+      }
+
+      @Override
+      public void mostrarVelocidad() {
+        System.out.println("Velocidad del auto");
+      }
+
+      private void metodoSecreto() {
+        System.out.println("Método privado del auto");
+      }
+    }
+
+    class Deportivo extends Auto {
+      private int ruedas;
+
+      public Deportivo() {
+        super();
+        this.ruedas = 6;
+      }
+
+      public void mostrarDeportivo() {
+        System.out.println("Soy un deportivo");
+      }
+    }`,
+        questions: [
+          {
+            id: 'a',
+            label: 'a)',
+            text: '¿Qué ocurre cuando el método mostrarVelocidad() es invocado por una instancia de Vehiculo?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta el método de Auto' },
+              { id: '2', text: 'B. Se ejecuta el método de Vehiculo' },
+              { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          },
+          {
+            id: 'b',
+            label: 'b)',
+            text: '¿Qué ocurre cuando un objeto de Auto invoca al método mostrarVelocidad()?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta el método de Vehiculo' },
+              { id: '2', text: 'B. Se ejecuta el método redefinido en Auto' },
+              { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
+              { id: '4', text: 'D. Error de ejecución' }
+            ]
+          },
+          {
+            id: 'c',
+            label: 'c)',
+            text: '¿Qué ocurre cuando un objeto de Deportivo recibe el mensaje mostrarVelocidad()?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta el método de Vehiculo' },
+              { id: '2', text: 'B. Se ejecuta el método de Auto' },
+              { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          },
+          {
+            id: 'd',
+            label: 'd)',
+            text: '¿Qué sucede cuando un objeto de Deportivo o Vehiculo intenta invocar metodoSecreto() de Auto?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta normalmente' },
+              { id: '2', text: 'B. Se ejecuta solo en Auto' },
+              { id: '3', text: 'C. Error de compilación' },
+              { id: '4', text: 'D. Error en tiempo de ejecución' }
+            ]
+          },
+          {
+            id: 'e',
+            label: 'e)',
+            text: '¿Qué valor tiene el atributo ruedas en un objeto de Auto?',
+            choices: [
+              { id: '1', text: 'A. 2' },
+              { id: '2', text: 'B. 4' },
+              { id: '3', text: 'C. 6' },
+              { id: '4', text: 'D. No existe' }
+            ]
+          },
+          {
+            id: 'f',
+            label: 'f)',
+            text: '¿Qué valor tiene el atributo ruedas en un objeto de Deportivo?',
+            choices: [
+              { id: '1', text: 'A. 4' },
+              { id: '2', text: 'B. 6' },
+              { id: '3', text: 'C. 10' },
+              { id: '4', text: 'D. Depende del constructor de Vehiculo' }
+            ]
+          },
+          {
+            id: 'g',
+            label: 'g)',
+            text: '¿Qué ocurre con el atributo ruedas en la clase Vehiculo?',
+            choices: [
+              { id: '1', text: 'A. Tiene valor 0 por defecto' },
+              { id: '2', text: 'B. Tiene valor 4' },
+              { id: '3', text: 'C. No existe en esa clase' },
+              { id: '4', text: 'D. Se hereda desde Auto' }
+            ]
+          },
+          {
+            id: 'h',
+            label: 'h)',
+            text: '¿Qué valor tiene velocidad en un objeto de Deportivo?',
+            choices: [
+              { id: '1', text: 'A. 0' },
+              { id: '2', text: 'B. 50' },
+              { id: '3', text: 'C. 6' },
+              { id: '4', text: 'D. Depende de Auto' }
+            ]
+          },
+          {
+            id: 'i',
+            label: 'i)',
+            text: '¿Qué valor tiene velocidad en un objeto de Auto?',
+            choices: [
+              { id: '1', text: 'A. 0' },
+              { id: '2', text: 'B. 50' },
+              { id: '3', text: 'C. 4' },
+              { id: '4', text: 'D. 6' }
+            ]
+          },
+          {
+            id: 'j',
+            label: 'j)',
+            text: 'Dada la siguiente declaración:\nVehiculo v = new Deportivo();\nv.mostrarVelocidad();\n¿Qué ocurre?',
+            choices: [
+              { id: '1', text: 'A. Se ejecuta el método de Vehiculo' },
+              { id: '2', text: 'B. Se ejecuta el método de Auto' },
+              { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
+              { id: '4', text: 'D. Error de compilación' }
+            ]
+          }
+        ]
+        }
     ]
   },
   {
