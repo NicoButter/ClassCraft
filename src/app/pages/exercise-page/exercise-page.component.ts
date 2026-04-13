@@ -33,6 +33,23 @@ export class ExercisePageComponent {
   /** Carousel state */
   readonly currentIndex = signal(0);
 
+  /** Submission state */
+  readonly submitted = signal(false);
+
+  /** Qualification state */
+  readonly score = computed(() => {
+    const ex = this.exercise();
+    if (!ex?.questions || !this.submitted()) return 0;
+    
+    let correct = 0;
+    ex.questions.forEach(q => {
+      if (this.answers()[q.id] === q.correctAnswerId) {
+        correct++;
+      }
+    });
+    return Math.round((correct / ex.questions.length) * 100);
+  });
+
   /** Key-value map: questionId → selectedChoiceId */
   private readonly answers = signal<Record<string, string | null>>({});
 
@@ -40,7 +57,7 @@ export class ExercisePageComponent {
     if (isPlatformBrowser(this.platformId)) {
       effect(() => {
         const ex = this.exercise();
-        if (!ex?.context) return;
+        if (!ex?.context) return;¿
         // Run after Angular renders the DOM with the new context
         setTimeout(() => this.applyHighlight(), 0);
       });
@@ -78,6 +95,7 @@ export class ExercisePageComponent {
   }
 
   onAnswer(questionId: string, choiceId: string): void {
+    if (this.submitted()) return;
     this.answers.update(prev => ({ ...prev, [questionId]: choiceId }));
   }
 
@@ -98,11 +116,15 @@ export class ExercisePageComponent {
   resetAnswers(): void {
     this.answers.set({});
     this.currentIndex.set(0);
+    this.submitted.set(false);
   }
 
   submitAnswers(): void {
     const ex = this.exercise();
     if (!ex?.questions) return;
+    
+    this.submitted.set(true);
+    
     const result = ex.questions.reduce<Record<string, string | null>>(
       (acc: Record<string, string | null>, q: Question) => {
         acc[q.id] = this.answers()[q.id] ?? null;

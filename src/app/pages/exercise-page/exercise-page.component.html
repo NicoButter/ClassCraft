@@ -66,22 +66,48 @@
                 role="radiogroup"
                 [attr.aria-label]="currentQuestion(ex.questions).text">
                 @for (choice of currentQuestion(ex.questions).choices; track choice.id) {
+                  @let q = currentQuestion(ex.questions);
+                  @let isSelected = selectedAnswer(q.id) === choice.id;
+                  @let isCorrect = q.correctAnswerId === choice.id;
+                  
                   <label
                     class="choice-item"
-                    [class.selected]="selectedAnswer(currentQuestion(ex.questions).id) === choice.id">
+                    [class.selected]="isSelected"
+                    [class.correct]="submitted() && isCorrect"
+                    [class.incorrect]="submitted() && isSelected && !isCorrect">
                     <input
                       type="radio"
-                      [name]="currentQuestion(ex.questions).id"
+                      [name]="q.id"
                       [value]="choice.id"
-                      [checked]="selectedAnswer(currentQuestion(ex.questions).id) === choice.id"
-                      (change)="onAnswer(currentQuestion(ex.questions).id, choice.id)"
+                      [checked]="isSelected"
+                      [disabled]="submitted()"
+                      (change)="onAnswer(q.id, choice.id)"
                     />
                     <span class="choice-key">{{ choiceKey($index) }}</span>
                     <span class="choice-text">{{ choice.text }}</span>
+                    
+                    @if (submitted()) {
+                      <span class="feedback-icon" aria-hidden="true">
+                        @if (isCorrect) { ✓ }
+                        @else if (isSelected) { ✗ }
+                      </span>
+                    }
                   </label>
                 }
               </div>
             </div>
+
+            @if (submitted()) {
+              <div class="score-banner" [class.pass]="score() >= 60">
+                <div class="score-content">
+                  <span class="score-label">Calificación final:</span>
+                  <span class="score-value">{{ score() }}%</span>
+                </div>
+                <p class="score-message">
+                  {{ score() >= 60 ? '¡Buen trabajo! Podés revisar tus respuestas arriba.' : 'Seguí practicando. Revisá los conceptos en los que tuviste errores.' }}
+                </p>
+              </div>
+            }
 
             <!-- Navigation -->
             <nav class="carousel-nav" aria-label="Navegación de preguntas">
@@ -95,10 +121,15 @@
 
               <div class="nav-dots" aria-hidden="true">
                 @for (q of ex.questions; track q.id; let i = $index) {
+                  @let isSelected = selectedAnswer(q.id) !== null;
+                  @let isFinalCorrect = submitted() && selectedAnswer(q.id) === q.correctAnswerId;
+                  
                   <button
                     class="dot"
                     [class.dot-active]="i === currentIndex()"
-                    [class.dot-answered]="selectedAnswer(q.id) !== null"
+                    [class.dot-answered]="isSelected && !submitted()"
+                    [class.dot-correct]="submitted() && isFinalCorrect"
+                    [class.dot-incorrect]="submitted() && !isFinalCorrect"
                     (click)="goTo(i)"
                     [attr.aria-label]="'Ir a pregunta ' + (i + 1)">
                   </button>

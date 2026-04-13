@@ -3,6 +3,7 @@ export interface Question {
   label: string;
   text: string;
   choices?: { id: string; text: string }[];
+  correctAnswerId: string;
 }
 
 export interface Exercise {
@@ -61,7 +62,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'acelerar() y abrirPuertas()' },
               { id: '3', text: 'acelerar() y activarTurbo()' },
               { id: '4', text: 'acelerar(), abrirPuertas() y activarTurbo()' }
-            ]
+            ],
+            correctAnswerId: '1'
           },
           {
             id: 'b',
@@ -72,7 +74,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'acelerar() y abrirPuertas()' },
               { id: '3', text: 'abrirPuertas() y activarTurbo()' },
               { id: '4', text: 'acelerar(), abrirPuertas() y activarTurbo()' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'c',
@@ -83,7 +86,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'acelerar() y abrirPuertas()' },
               { id: '3', text: 'acelerar() y activarTurbo()' },
               { id: '4', text: 'acelerar(), abrirPuertas() y activarTurbo()' }
-            ]
+            ],
+            correctAnswerId: '4'
           },
           {
             id: 'd',
@@ -94,7 +98,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'puertas' },
               { id: '3', text: 'potencia' },
               { id: '4', text: 'velocidad y puertas' }
-            ]
+            ],
+            correctAnswerId: '1'
           },
           {
             id: 'e',
@@ -105,7 +110,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'velocidad y puertas' },
               { id: '3', text: 'velocidad y potencia' },
               { id: '4', text: 'puertas y potencia' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'f',
@@ -116,7 +122,8 @@ public class Deportivo extends Auto {
               { id: '2', text: 'puertas' },
               { id: '3', text: 'velocidad y puertas' },
               { id: '4', text: 'velocidad, puertas y potencia' }
-            ]
+            ],
+            correctAnswerId: '4'
           }
         ]
       },
