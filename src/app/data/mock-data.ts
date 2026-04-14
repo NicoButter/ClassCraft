@@ -3,7 +3,7 @@ export interface Question {
   label: string;
   text: string;
   choices?: { id: string; text: string }[];
-  correctAnswerId: string;
+  correctAnswerId?: string;
 }
 
 export interface Exercise {
@@ -183,7 +183,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Se ejecuta el método de Vehiculo' },
               { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'b',
@@ -194,7 +195,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Se ejecuta el método redefinido en Auto' },
               { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
               { id: '4', text: 'D. Error de ejecución' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'c',
@@ -205,7 +207,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Se ejecuta el método de Auto' },
               { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'd',
@@ -216,7 +219,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Se ejecuta solo en Auto' },
               { id: '3', text: 'C. Error de compilación' },
               { id: '4', text: 'D. Error en tiempo de ejecución' }
-            ]
+            ],
+            correctAnswerId: '3'
           },
           {
             id: 'e',
@@ -227,7 +231,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. 4' },
               { id: '3', text: 'C. 6' },
               { id: '4', text: 'D. No existe' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'f',
@@ -238,7 +243,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. 6' },
               { id: '3', text: 'C. 10' },
               { id: '4', text: 'D. Depende del constructor de Vehiculo' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'g',
@@ -249,7 +255,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Tiene valor 4' },
               { id: '3', text: 'C. No existe en esa clase' },
               { id: '4', text: 'D. Se hereda desde Auto' }
-            ]
+            ],
+            correctAnswerId: '3'
           },
           {
             id: 'h',
@@ -260,7 +267,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. 50' },
               { id: '3', text: 'C. 6' },
               { id: '4', text: 'D. Depende de Auto' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'i',
@@ -271,7 +279,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. 50' },
               { id: '3', text: 'C. 4' },
               { id: '4', text: 'D. 6' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: 'j',
@@ -282,7 +291,8 @@ class Deportivo extends Auto {
               { id: '2', text: 'B. Se ejecuta el método de Auto' },
               { id: '3', text: 'C. Se ejecuta el método de Deportivo' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '2'
           }
         ]
       },
@@ -431,7 +441,8 @@ public class Prueba4 {
               { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
               { id: '3', text: 'C. Atributo j de X: 120\nAtributo i de X: 0' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '2'
           },
           {
             id: '3.2',
@@ -442,7 +453,8 @@ public class Prueba4 {
               { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
               { id: '3', text: 'C. Atributo j de X: 0\nAtributo i de X: 0' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '1'
           },
           {
             id: '3.3',
@@ -453,7 +465,8 @@ public class Prueba4 {
               { id: '2', text: 'B. Se ejecuta y muestra i = 0' },
               { id: '3', text: 'C. Error de compilación' },
               { id: '4', text: 'D. Error en tiempo de ejecución' }
-            ]
+            ],
+            correctAnswerId: '3'
           },
           {
             id: '3.4',
@@ -464,7 +477,8 @@ public class Prueba4 {
               { id: '2', text: 'B. Atributo j de X: 120\nAtributo i de X: 100' },
               { id: '3', text: 'C. Atributo j de X: 120\nAtributo i de X: 110' },
               { id: '4', text: 'D. Error de compilación' }
-            ]
+            ],
+            correctAnswerId: '3'
           }
         ]
       }

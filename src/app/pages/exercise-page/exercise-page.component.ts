@@ -57,7 +57,7 @@ export class ExercisePageComponent {
     if (isPlatformBrowser(this.platformId)) {
       effect(() => {
         const ex = this.exercise();
-        if (!ex?.context) return;¿
+        if (!ex?.context) return;
         // Run after Angular renders the DOM with the new context
         setTimeout(() => this.applyHighlight(), 0);
       });
