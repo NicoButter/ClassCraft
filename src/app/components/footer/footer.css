@@ -6,6 +6,8 @@
 .footer-section h4 { margin:0 0 0.75rem 0; color:#fff; font-size:1.05rem; font-weight:600; }
 .footer-section p { margin:0; color:#cbd5e1; font-size:0.95rem; line-height:1.5; }
 .footer-section strong { color:#fff; }
+.footer-logo { max-width:150px; height:auto; opacity:0.9; transition:opacity 0.3s ease; display:block; margin:0 auto; }
+.footer-logo:hover { opacity:1; }
 
 .footer-bottom { border-top:1px solid #475569; padding-top:1.5rem; text-align:center; }
 .footer-bottom p { margin:0.5rem 0; color:#cbd5e1; font-size:0.9rem; }
